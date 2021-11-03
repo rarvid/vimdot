@@ -1,35 +1,7 @@
-" All system-wide defaults are set in $VIMRUNTIME/debian.vim and sourced by
-" the call to :runtime you can find below.  If you wish to change any of those
-" settings, you should do it in this file (/etc/vim/vimrc), since debian.vim
-" will be overwritten everytime an upgrade of the vim packages is performed.
-" It is recommended to make changes after sourcing debian.vim since it alters
-" the value of the 'compatible' option.
-
-runtime! debian.vim
-
-" Load Plugins
-call plug#begin('~/.vim/vim-plug')
-Plug 'ghifarit53/tokyonight-vim'
-Plug 'vim-airline/vim-airline'
-Plug 'bfrg/vim-cpp-modern'
-Plug 'arzg/vim-colors-xcode'
-Plug 'chriskempson/base16-vim'
-Plug 'vim-airline/vim-airline-themes'
-call plug#end()
-" Vim will load $VIMRUNTIME/defaults.vim if the user does not have a vimrc.
-" This happens after /etc/vim/vimrc(.local) are loaded, so it will override
-" any settings in these files.
-" If you don't want that to happen, uncomment the below line to prevent
-" defaults.vim from being loaded.
-" let g:skip_defaults_vim = 1
-
-" Uncomment the next line to make Vim more Vi-compatible
-" NOTE: debian.vim sets 'nocompatible'.  Setting 'compatible' changes numerous
-" options, so any other options should be set AFTER setting 'compatible'.
 set nocompatible
 " Vim5 and later versions support syntax highlighting. Uncommenting the next
 " line enables syntax highlighting by default.
-colorscheme peachpuff
+colorscheme gruvbox
 syntax on
 " If using a dark background within the editing area and syntax highlighting
 " turn on this option as well
@@ -58,26 +30,16 @@ set path=**		" For finding files locally
 set autoindent
 set smartindent
 set expandtab
-set shiftwidth=2
-set tabstop=2
-set number
+set backspace=2
+set shiftwidth=4
+set tabstop=4
 set guioptions-=T
 set guioptions-=L
 set guioptions-=m
 set guioptions-=r
 set guiheadroom=0
 set formatoptions-=cro
-set guifont=Meslo\ LG\ S\ 10
+set guifont=Consolas:h10
+set termguicolors
 set laststatus=2
 set ruler
-
-" Enable struct field highlighting in C
-let g:cpp_member_highlight = 1
-
-let g:airline_theme='light'
-
-" Source a global configuration file if available
-if filereadable("/etc/vim/vimrc.local")
-  source /etc/vim/vimrc.local
-endif
-
