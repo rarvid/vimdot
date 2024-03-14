@@ -3,10 +3,19 @@
 ;; installed packages.  Don't delete this line.  If you don't want it,
 ;; just comment it out by adding a semicolon to the start of the line.
 ;; You may delete these explanatory comments.
-(package-initialize)
+
 
 (add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
+(add-to-list 'load-path' "~/.emacs.d/manual_packages")
 
+(global-set-key (kbd "M-x") 'smex)
+(global-set-key (kbd "M-X") 'smex-major-mode-commands)
+;; This is your old M-x.
+(global-set-key (kbd "C-c C-c M-x") 'execute-extended-command)
+
+(require 'package)
+(require 'lustre-mode)
+(require 'smex)
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -26,9 +35,11 @@
  '(column-number-mode t)
  '(company-quickhelp-color-background "#4F4F4F")
  '(company-quickhelp-color-foreground "#DCDCCC")
+ '(coverlay:tested-line-background-color "#E1FFE1")
+ '(coverlay:untested-line-background-color "LavenderBlush")
  '(cua-mode t nil (cua-base))
  '(custom-buffer-indent 4)
- '(custom-enabled-themes '(desert))
+ '(custom-enabled-themes '(gruber-darker))
  '(custom-safe-themes t)
  '(custom-theme-directory "~/.emacs.d/themes")
  '(debug-on-error nil)
@@ -39,18 +50,27 @@
  '(global-auto-revert-mode t)
  '(global-undo-tree-mode t)
  '(global-visual-line-mode t)
+ '(haskell-interactive-popup-errors nil)
  '(inhibit-startup-screen t)
  '(initial-buffer-choice t)
  '(initial-scratch-message nil)
+ '(jcs-poptip-background-color "#2A2D38")
+ '(jcs-poptip-foreground-color "#F1F1F1")
  '(linum-format " %5i ")
+ '(ido-mode 1)
  '(nrepl-message-colors
    '("#CC9393" "#DFAF8F" "#F0DFAF" "#7F9F7F" "#BFEBBF" "#93E0E3" "#94BFF3" "#DC8CC3"))
- '(package-selected-packages '(undo-tree))
+ '(package-archives
+   '(("gnu" . "https://elpa.gnu.org/packages/")
+	 ("melpa" . "https://melpa.org/packages/")))
+ '(package-selected-packages
+   '(smex gruber-darker-theme uxntal-mode lua-mode rust-mode powershell haskell-mode ## undo-tree))
  '(pdf-view-midnight-colors '("#DCDCCC" . "#383838"))
  '(python-indent-def-block-scale 2)
  '(python-indent-guess-indent-offset nil)
  '(python-indent-guess-indent-offset-verbose nil)
  '(python-indent-offset 4)
+ '(ring-bell-function 'ignore)
  '(safe-local-variable-values '((TeX-master . t)))
  '(scroll-bar-mode nil)
  '(show-paren-mode t)
@@ -89,3 +109,7 @@
 (put 'dired-find-alternate-file 'disabled nil)
 (put 'scroll-left 'disabled nil)
 (put 'set-goal-column 'disabled nil)
+
+(smex-initialize)
+(package-initialize)
+;(package-refresh-contents)
